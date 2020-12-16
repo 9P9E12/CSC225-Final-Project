@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
     const request = axios.get('http://csc225.mockable.io/consoles');
     request.then(function(response){
-        $('#loading').hide();
+        $('#page-loading').hide();
         const platforms = response.data;
         const platformsHtml = platforms.map(function(platform){
             const {id, name: platformName, image} = platform;
@@ -23,9 +23,9 @@ jQuery(document).ready(function($){
 
     jQuery('#platforms').on('click','.btn',function(){
         const id = $(this).attr('data-id');
-        $('#loading').show();
+        $('#info-loading').show();
         axios.get(`http://csc225.mockable.io/consoles/${id}`).then(function(info){
-            $('#loading').hide();
+            $('#info-loading').hide();
             const{price,country,releaseYear} = info.data;
             $('#card-id-'+id).html(`
                 Price of Console: $${price}<br>
